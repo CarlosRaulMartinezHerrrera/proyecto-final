@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobierno de México - Generador de CURP</title>
+    <style>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #15af48e7;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #45a381;
+            color: white;
+            padding: 10px 0;
+            text-align: center ;
+        }
+        nav {
+            background-color: #0a4b1aa2;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #c4bfbf;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        
+       }
+
+       body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+          
+        }
+        h1 {
+            color: #006341;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #200202;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #006341;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d2e;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border: 1px solid #0e50ac;
+            border-radius: 4px;
+        }
+    </style>
+
+<body>
+    <header>
+        <h1>Gobierno de México</h1>
+    </header>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Gobierno</a>
+        <a href="#">Trámites</a>
+        <a href="#">Servicios</a>
+        <a href="#">Contacto</a>
+    </nav>
+    <main>
+        <h2>Bienvenidos al portal del Gobierno de México</h2>
+        <p>En este sitio encontrarás información sobre los servicios y trámites que ofrece el Gobierno de México. a CURP es indispensable para manejar declaraciones de impuestos, para llevar un registro en empresas, escuelas, afiliación en los servicios de salud, solicitud de pasaportes y otras dependencias gubernamentales.</p>
+    </main>
+    <footer>
+        <p>La consulta puede efectuarse indicando la clave CURP cuando ya la conoce o proporcionando su nombre y datos de nacimiento Clave Única de Registro de Población (CURP)*:
+        </p>
+    </footer>
+</head>
+<body>
+    <div class="container">
+        <form id="curpForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="apellidoPaterno">Apellido Paterno:</label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno" required>
+            
+            <label for="apellidoMaterno">Apellido Materno:</label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno" required>
+            
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+            
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <option value="H">Hombre</option>
+                <option value="M">Mujer</option>
+                <option value="N">No Binario</option>
+            </select>
+            
+            <label for="estado">Estado de Nacimiento:</label>
+            <select id="estado" name="estado" required>
+                <option value="AS">Aguascalientes</option>
+                <option value="BC">Baja California</option>
+                <option value="BS">Baja California Sur</option>
+                <option value="CC">Campeche</option>
+                <option value="CL">Coahuila</option>
+                <option value="CM">Colima</option>
+                <option value="CS">Chiapas</option>
+                <option value="CH">Chihuahua</option>
+                <option value="DF">Ciudad de México</option>
+                <option value="DG">Durango</option>
+                <option value="GT">Guanajuato</option>
+                <option value="GR">Guerrero</option>
+                <option value="HG">Hidalgo</option>
+                <option value="JC">Jalisco</option>
+                <option value="MC">México</option>
+                <option value="MN">Michoacán</option>
+                <option value="MS">Morelos</option>
+                <option value="NT">Nayarit</option>
+                <option value="NL">Nuevo León</option>
+                <option value="OC">Oaxaca</option>
+                <option value="PL">Puebla</option>
+                <option value="QT">Querétaro</option>
+                <option value="QR">Quintana Roo</option>
+                <option value="SP">San Luis Potosí</option>
+                <option value="SL">Sinaloa</option>
+                <option value="SR">Sonora</option>
+                <option value="TC">Tabasco</option>
+                <option value="TS">Tamaulipas</option>
+                <option value="TL">Tlaxcala</option>
+                <option value="VZ">Veracruz</option>
+                <option value="YN">Yucatán</option>
+                <option value="ZS">Zacatecas</option>
+                <option value="NE">Nacido en el Extranjero</option>
+            </select>
+            
+            <button type="button" onclick="generarCURP()">Generar CURP</button>
+        </form>
+        <div id="resultado" class="result" style="display:none;">
+            <h2>CURP Generada:</h2>
+            <p id="curp"></p>
+        </div>
+    </div>
+
+    <script>
+        function generarCURP() {
+            const nombre = document.getElementById('nombre').value;
+            const apellidoPaterno = document.getElementById('apellidoPaterno').value;
+            const apellidoMaterno = document.getElementById('apellidoMaterno').value;
+            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            const genero = document.getElementById('genero').value;
+            const estado = document.getElementById('estado').value;
+
+            // Aquí se debería implementar la lógica para generar la CURP
+            // Esta es una versión simplificada y no genera una CURP válida
+            const curp = apellidoMaterno.substring(0, 2) + apellidoPaterno.substring(0, 1) + nombre.substring(0, 1) + fechaNacimiento.replace(/-/g, '').substring(2, 8) + genero + estado ;
+
+            document.getElementById('curp').innerText = curp.toUpperCase();
+            document.getElementById('resultado').style.display = 'block';
+        }
+    </script>
+</body>
+</html></select></html>
